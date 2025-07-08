@@ -1,0 +1,285 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/handymanu/practica/1.0.0"
+  } ],
+  "info" : {
+    "description" : "This is a simple API",
+    "version" : "1.0.0",
+    "title" : "Simple Inventory API",
+    "contact" : {
+      "email" : "you@your-company.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags" : [ {
+    "name" : "admins",
+    "description" : "Secured Admin-only calls"
+  }, {
+    "name" : "developers",
+    "description" : "Operations available to regular developers"
+  } ],
+  "paths" : {
+    "/clientes" : {
+      "get" : {
+        "summary" : "get de  todos los clientes",
+        "tags" : [ "Clientes" ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        },
+        "operationId" : "get-clientes",
+        "description" : "Obtiene todos los clientes almacenados en la base de datos."
+      },
+      "post" : {
+        "summary" : "post un cliente",
+        "tags" : [ "Clientes" ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        },
+        "operationId" : "post-clientes",
+        "description" : "Crea un nuevo cliente en la base de datos.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/clientes"
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "put datos nuevos a un cliente",
+        "tags" : [ "Clientes" ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        },
+        "operationId" : "put-clientes",
+        "description" : "",
+        "parameters" : [ {
+          "schema" : {
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "id",
+          "required" : true,
+          "description" : "id del usuario"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/clientes"
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "delete un usuario de la base de datos",
+        "tags" : [ "Clientes" ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        },
+        "operationId" : "delete-clientes",
+        "description" : "Elimina un cliente según su ID.",
+        "parameters" : [ {
+          "schema" : {
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "id",
+          "required" : true,
+          "description" : "id del cliente"
+        } ]
+      }
+    },
+    "/reservaciones" : {
+      "get" : {
+        "summary" : "get de todas las reservaciones",
+        "tags" : [ "Reservaciones" ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        },
+        "operationId" : "get-reservaciones",
+        "description" : "Obtiene todas las reservaciones de la base de datos."
+      },
+      "post" : {
+        "summary" : "post una reservación",
+        "tags" : [ "Reservaciones" ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        },
+        "operationId" : "post-reservaciones",
+        "description" : "Crea una nueva reservación en la base de datos.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/reservaciones"
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "put datos de una reservación",
+        "tags" : [ "Reservaciones" ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        },
+        "operationId" : "put-reservaciones",
+        "parameters" : [ {
+          "schema" : {
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "id",
+          "required" : true,
+          "description" : "id de la reservacion"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/reservaciones"
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "delete una reservación de la base de datos",
+        "tags" : [ "Reservaciones" ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        },
+        "operationId" : "delete-reservaciones",
+        "description" : "Elimina una reservación según su ID.",
+        "parameters" : [ {
+          "schema" : {
+            "type" : "string"
+          },
+          "in" : "query",
+          "name" : "id",
+          "description" : "id de la reservacion",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "clientes" : {
+        "title" : "clientes",
+        "type" : "object",
+        "properties" : {
+          "Name" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "m59dph13yod1m"
+            }
+          },
+          "Email" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "cku1dkhodrno7"
+            }
+          },
+          "Password" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "6he3m9dth1zgq"
+            }
+          },
+          "Phone" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "1sg0l4xc3ps7d"
+            }
+          },
+          "Age" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "7oy2m7uw08plj"
+            }
+          }
+        }
+      },
+      "reservaciones" : {
+        "title" : "reservaciones",
+        "type" : "object",
+        "properties" : {
+          "ClientId" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "pynk1enlleye0"
+            }
+          },
+          "Vehicle" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "oz3s4ssn22hse"
+            }
+          },
+          "Service" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "y7jriijvkwvxe"
+            }
+          },
+          "Status" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "kcovix9zl6ff2"
+            }
+          }
+        }
+      }
+    }
+  }
+}
