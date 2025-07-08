@@ -23,15 +23,35 @@ clientesController.getClientebyId = async (req, res) => {
     }
 }
 
+
+
 clientesController.createCliente = async (req, res) => {
-    const newCliente = new clientes(req.body);
-    try {
-        const savedCliente = await newCliente.save();
-        res.status(201).json(savedCliente);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-}
+  const { Name, Email, Password, Phone, Age } = req.body;
+
+  if (!Name || !Email || !Password || !Phone || !Age) {
+    return res.status(400).json({ message: "Todos los campos son obligatorios" });
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(Email)) {
+    return res.status(400).json({ message: "Email no válido" });
+  }
+
+  const clienteExistente = await clientes.findOne({ Email });
+  if (clienteExistente) {
+    return res.status(409).json({ message: "Ya existe un cliente con este correo" });
+  }
+
+  const newCliente = new clientes({ Name, Email, Password, Phone, Age });
+
+  try {
+    const savedCliente = await newCliente.save();
+    res.status(201).json(savedCliente);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 
 clientesController.updateCliente = async (req, res) => {
 const {Name,Email,Password,Phone,Age} = req.body;
