@@ -39,6 +39,36 @@
         "operationId" : "get-clientes",
         "description" : "Obtiene todos los clientes almacenados en la base de datos."
       },
+      "/clientes/{id}": {
+  "get": {
+    "summary": "Obtener un cliente por ID",
+    "tags": [ "Clientes" ],
+    "description": "Devuelve los datos de un cliente específico usando su ID.",
+    "operationId": "get-clientes-by-id",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "description": "ID del cliente",
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Cliente encontrado"
+      },
+      "404": {
+        "description": "Cliente no encontrado"
+      },
+      "500": {
+        "description": "Error interno del servidor"
+      }
+    }
+  }
+},
       "post" : {
         "summary" : "post un cliente",
         "tags" : [ "Clientes" ],
@@ -133,6 +163,36 @@
         "operationId" : "get-reservaciones",
         "description" : "Obtiene todas las reservaciones de la base de datos."
       },
+      "/reservaciones/{id}": {
+  "get": {
+    "summary": "Obtener una reservación por ID",
+    "tags": [ "Reservaciones" ],
+    "description": "Devuelve los datos de una reservación específica usando su ID.",
+    "operationId": "get-reservaciones-by-id",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "description": "ID de la reservación",
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Reservación encontrada"
+      },
+      "404": {
+        "description": "Reservación no encontrada"
+      },
+      "500": {
+        "description": "Error interno del servidor"
+      }
+    }
+  }
+},
       "post" : {
         "summary" : "post una reservación",
         "tags" : [ "Reservaciones" ],
